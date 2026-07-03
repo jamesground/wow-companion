@@ -1,14 +1,14 @@
 import AppLayout from "@/components/AppLayout";
 
-export default function Home() {
+export default function CharactersPage() {
     return (
         <AppLayout>
             <h2 className="text-3xl font-bold">
-                Dashboard
+                Characters
             </h2>
 
             <p className="mt-4 text-zinc-400">
-                Welcome back! Choose an activity from the sidebar to begin.
+                Manage your World of Warcraft characters.
             </p>
         </AppLayout>
     );
