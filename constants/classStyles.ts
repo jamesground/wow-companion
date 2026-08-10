@@ -1,7 +1,7 @@
 export const classStyles = {
     Paladin: {
         color: "#F58CBA",
-        icon: "...",
+        icon: "/class-emblems/paladin.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
@@ -9,7 +9,7 @@ export const classStyles = {
 
     Hunter: {
         color: "#AAD372",
-        icon: "...",
+        icon: "/class-emblems/hunter.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
@@ -17,87 +17,87 @@ export const classStyles = {
 
     Druid: {
         color: "#FF7C0A",
-        icon: "...",
+        icon: "/class-emblems/druid.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Mage: {
-        color: "...",
-        icon: "...",
+        color: "#69CCF0",
+        icon: "/class-emblems/mage.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Warrior: {
-        color: "...",
-        icon: "...",
+        color: "#C79C6E",
+        icon: "/class-emblems/warrior.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Monk: {
-        color: "...",
-        icon: "...",
+        color: "#FF7C0A",
+        icon: "/class-emblems/monk.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Shaman: {
-        color: "...",
-        icon: "...",
+        color: "#228B22",
+        icon: "/class-emblems/shaman.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Priest: {
-        color: "...",
-        icon: "...",
+        color: "#FFFFFF",
+        icon: "/class-emblems/priest.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Rogue: {
-        color: "...",
-        icon: "...",
+        color: "#FFD100",
+        icon: "/class-emblems/rogue.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Warlock: {
-        color: "...",
-        icon: "...",
+        color: "#8787D1",
+        icon: "/class-emblems/warlock.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     "Demon Hunter": {
-        color: "...",
-        icon: "...",
+        color: "#9F5485",
+        icon: "/class-emblems/demon-hunter.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     "Death Knight": {
-        color: "...",
-        icon: "...",
+        color: "#C41F3B",
+        icon: "/class-emblems/death-knight.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",
     },
 
     Evoker: {
-        color: "...",
-        icon: "...",
+        color: "#33937F",
+        icon: "/class-emblems/evoker.png",
         iconBackground: "...",
         hoverBorder: "...",
         gradient: "...",

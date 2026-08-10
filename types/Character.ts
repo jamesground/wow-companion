@@ -6,10 +6,12 @@ import type { Spec } from "./Spec";
 export type Character = {
     id: number;
     name: string;
+    isMain: boolean;
     region: Region;
     realm: string;
     faction: Faction;
     characterClass: CharacterClass;
     spec: Spec;
     level: number;
+    itemLevel: number;
 };
