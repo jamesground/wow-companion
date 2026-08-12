@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Field Journal
+
+My Field Journal (MFJ) is a personal World of Warcraft companion application designed to help manage characters, professions, crafting, events, and other account-wide information.
+
+MFJ is being built as a learning project while gradually becoming a practical tool for managing my WoW account.
+
+## Current Features
+
+### Characters
+
+- Character data model
+- Character list
+- Character cards
+- Class-specific colors and emblems
+- Main character indicator
+- Item level display
+- Filter characters to show mains only
+- Sort characters by name, level, or item level
+
+Character data is currently stored locally in `data/characters.ts`.
+
+## Planned Features
+
+### Characters
+
+- Character creation/editing
+- Blizzard Armory integration
+- Replace locally maintained character data with Blizzard API data
+
+### Midsummer
+
+- Fire data
+- Fire tracking
+- Progress tracking
+- Rewards tracking
+
+### Professions & Crafting
+
+- Profession data model
+- Profession tracking per character
+- Concentration tracking
+- Profession tool tracking
+- Recipe tracking
+- Crafting material tracking
+- Crafting recommendations
 
 ## Getting Started
 
-First, run the development server:
+### Requirements
+
+- Node.js
+- npm
+
+### Development Server
+
+Run the development server with:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The development server automatically reloads as files are changed.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```text
+app/
+    Application pages and routes
 
-To learn more about Next.js, take a look at the following resources:
+components/
+    Reusable UI components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+constants/
+    Application-wide constants and styling data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+data/
+    Local application data
 
-## Deploy on Vercel
+types/
+    TypeScript type definitions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+public/
+    Static assets such as class emblems
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development
+
+Common commands:
+
+```bash
+npm run dev
+```
+
+Start the local development server.
+
+```bash
+npm run build
+```
+
+Create a production build.
+
+```bash
+npm run lint
+```
+
+Run the project's linting checks.
+
+## Long-Term Vision
+
+MFJ is intended to grow beyond a simple character tracker into a personal World of Warcraft account management and planning tool.
+
+A major goal is integrating Blizzard's Armory/API data so that character and profession information can eventually be synchronized rather than maintained manually.
+
+The profession system is intended to go beyond simple tracking. Eventually, MFJ should be able to combine character professions, recipes, tools, concentration, materials, and crafting requirements to answer questions such as:
+
+> "Which character can craft this item for another character right now?"
+
+## Project Status
+
+MFJ is actively under development. Features and architecture are expected to evolve as the project grows.
