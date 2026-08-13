@@ -23,8 +23,10 @@
 - [ ] Rewards page
 
 ## Profession Tracking and Armory Data
-- [ ] Build profession data model
-- [ ] Add profession tracking to characters
+- [x] Build profession data model
+- [x] Add profession tracking to characters
+- [x] Define profession categories and types
+- [x] Add basic profession validation
 - [ ] Track profession concentration
 - [ ] Track profession tools
 - [ ] Track recipes

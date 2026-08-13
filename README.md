@@ -37,6 +37,10 @@ Character data is currently stored locally in `data/characters.ts`.
 ### Professions & Crafting
 
 - Profession data model
+- Primary and secondary profession classification
+- Crafting and gathering profession classification
+- Character profession data
+- Basic profession validation
 - Profession tracking per character
 - Concentration tracking
 - Profession tool tracking

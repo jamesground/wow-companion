@@ -12,6 +12,17 @@ export const characters: Character[] = [
         region: "US",
         faction: "Alliance",
         itemLevel: 450,
+        professions: [
+            {
+                profession: "Inscription",
+                skill: 100,
+                concentration: 1000,
+            },
+            {
+                profession: "Herbalism",
+                skill: 100,
+            },
+        ],
     },
     {
         id: 2,
@@ -24,6 +35,18 @@ export const characters: Character[] = [
         region: "US",
         faction: "Alliance",
         itemLevel: 450,
+        professions: [
+            {
+                profession: "Leatherworking",
+                skill: 100,
+                concentration: 1000,
+            },
+            {
+                profession: "Engineering",
+                skill: 100,
+                concentration: 1000,
+            },
+        ],
     },
     {
         id: 3,
@@ -36,5 +59,16 @@ export const characters: Character[] = [
         region: "US",
         faction: "Alliance",
         itemLevel: 450,
+        professions: [ 
+            {
+                profession: "Jewelcrafting",
+                skill: 100,
+                concentration: 1000,
+            },
+            {
+                profession: "Mining",
+                skill: 100,
+            },
+        ],
     },
 ];
