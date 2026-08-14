@@ -1,11 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppLayout from "@/components/AppLayout";
 import CharacterCard from "@/components/CharacterCard";
-import { characters } from "@/data/characters";
+import { getCharacters } from "@/data/charactersService";
+import type { Character } from "@/types/Character";
 
 export default function CharactersPage() {
+    const [characters, setCharacters] = useState<Character[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        getCharacters().then((characters) => {
+            setCharacters(characters);
+            setIsLoading(false);
+        });
+    }, []);
+
     const [showMainsOnly, setShowMainsOnly] = useState(false);
     const [sortBy, setSortBy] = useState("name");
 
@@ -48,28 +59,37 @@ export default function CharactersPage() {
                 </select>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {...characters
-                    .filter((character) => !showMainsOnly || character.isMain)
-                    .sort((a, b) => {
-                        if (sortBy === "name") {
-                            return a.name.localeCompare(b.name);
-                        }
-                        if (sortBy === "level") {
-                            return b.level - a.level;
-                        }
-                        if (sortBy === "itemLevel") {
-                            return b.itemLevel - a.itemLevel;
-                        }
-                        return 0;
-                    })
-                    .map((character) => (
-                        <CharacterCard
-                            key={character.id}
-                            character={character}
-                    />
-                ))}
-            </div>
+            {isLoading ? (
+                <p className="mt-6 text-zinc-400">
+                    Loading characters...
+                </p>
+            ) : (
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {characters
+                        .filter((character) => !showMainsOnly || character.isMain)
+                        .sort((a, b) => {
+                            if (sortBy === "name") {
+                                return a.name.localeCompare(b.name);
+                            }
+
+                            if (sortBy === "level") {
+                                return b.level - a.level;
+                            }
+
+                            if (sortBy === "itemLevel") {
+                                return b.itemLevel - a.itemLevel;
+                            }
+
+                            return 0;
+                        })
+                        .map((character) => (
+                            <CharacterCard
+                                key={character.id}
+                                character={character}
+                            />
+                        ))}
+                </div>
+            )}
         </AppLayout>
     );
 }
