@@ -25,4 +25,5 @@ export type Profession = {
     name: ProfessionName;
     category: ProfessionCategory;
     type: ProfessionType;
+    icon: string;
 };
