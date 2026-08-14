@@ -26,7 +26,10 @@
 - [x] Build profession data model
 - [x] Add profession tracking to characters
 - [x] Define profession categories and types
-- [x] Add basic profession validation
+- [x] Add profession validation
+- [x] Add profession icons
+- [x] Display profession icons on character cards
+- [x] Add profession information tooltips
 - [ ] Track profession concentration
 - [ ] Track profession tools
 - [ ] Track recipes

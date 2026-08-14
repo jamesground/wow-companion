@@ -16,8 +16,19 @@ MFJ is being built as a learning project while gradually becoming a practical to
 - Item level display
 - Filter characters to show mains only
 - Sort characters by name, level, or item level
+- Profession icons displayed on character cards
+- Profession information tooltips
 
 Character data is currently stored locally in `data/characters.ts`.
+
+### Professions
+
+- Profession data model
+- Primary and secondary profession classification
+- Crafting and gathering profession classification
+- Character profession data
+- Profession validation
+- Profession skill and concentration display
 
 ## Planned Features
 
@@ -36,11 +47,6 @@ Character data is currently stored locally in `data/characters.ts`.
 
 ### Professions & Crafting
 
-- Profession data model
-- Primary and secondary profession classification
-- Crafting and gathering profession classification
-- Character profession data
-- Basic profession validation
 - Profession tracking per character
 - Concentration tracking
 - Profession tool tracking
@@ -86,7 +92,7 @@ types/
     TypeScript type definitions
 
 public/
-    Static assets such as class emblems
+    Static assets such as class and profession icons
 ```
 
 ## Development
