@@ -1,7 +1,18 @@
-import type { ProfessionName } from "./Profession";
+import type { ProfessionCategory, ProfessionName } from "./Profession";
+
+export type ProfessionExpansion = {
+    name: string;
+    id: number;
+    skill: number;
+    maxSkill: number;
+};
 
 export type CharacterProfession = {
     profession: ProfessionName;
-    skill: number;
+    category: ProfessionCategory;
+    expansions: ProfessionExpansion[];
+    skill?: number;
+    maxSkill?: number;
+    specialization?: string;
     concentration?: number;
 };

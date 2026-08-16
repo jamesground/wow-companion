@@ -10,6 +10,7 @@ export type ProfessionName =
     | "Mining"
     | "Skinning"
     | "Tailoring"
+    | "Archaeology"
     | "Cooking"
     | "Fishing";
     

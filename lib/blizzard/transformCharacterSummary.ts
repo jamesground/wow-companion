@@ -1,9 +1,9 @@
-import { normalizeCharacterClass } from "./normalize";
 import type { Character } from "../../types/Character";
-import type { BlizzardCharacterProfile } from "./types";
+import type { BlizzardCharacterSummary } from "./types";
+import { normalizeCharacterClass } from "./normalize";
 
-export function transformCharacter(
-    character: BlizzardCharacterProfile
+export function transformCharacterSummary(
+    character: BlizzardCharacterSummary
 ): Character {
     return {
         id: character.id,
@@ -15,11 +15,11 @@ export function transformCharacter(
             ? "Alliance"
             : "Horde",
         characterClass: normalizeCharacterClass(
-            character.character_class.name.en_US
+            character.playable_class.name.en_US
         ),
-        spec: character.active_spec.name.en_US,
+        spec: "",
         professions: [],
         level: character.level,
-        itemLevel: character.equipped_item_level,
+        itemLevel: 0,
     };
 }

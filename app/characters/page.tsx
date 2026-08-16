@@ -3,22 +3,41 @@
 import { useState, useEffect } from "react";
 import AppLayout from "@/components/AppLayout";
 import CharacterCard from "@/components/CharacterCard";
-import { getCharacters } from "@/data/charactersService";
 import type { Character } from "@/types/Character";
 
 export default function CharactersPage() {
     const [characters, setCharacters] = useState<Character[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        getCharacters().then((characters) => {
-            setCharacters(characters);
-            setIsLoading(false);
-        });
-    }, []);
+    const [error, setError] = useState<string | null>(null);
 
     const [showMainsOnly, setShowMainsOnly] = useState(false);
     const [sortBy, setSortBy] = useState("name");
+
+    useEffect(() => {
+        async function loadCharacters() {
+            try {
+                const response = await fetch("/api/characters");
+
+                if (!response.ok) {
+                    throw new Error("Failed to load characters.");
+                }
+
+                const data: Character[] = await response.json();
+
+                setCharacters(data);
+            } catch (error) {
+                setError(
+                    error instanceof Error
+                        ? error.message
+                        : "Failed to load characters."
+                );
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        loadCharacters();
+    }, []);
 
     return (
         <AppLayout>
@@ -37,13 +56,19 @@ export default function CharactersPage() {
                     checked={showMainsOnly}
                     onChange={() => setShowMainsOnly(!showMainsOnly)}
                 />
-                <label htmlFor="showMainsOnly" className="text-zinc-400">
+                <label
+                    htmlFor="showMainsOnly"
+                    className="text-zinc-400"
+                >
                     Show mains only
                 </label>
             </div>
 
             <div className="mt-4 flex items-center gap-2">
-                <label htmlFor="sortBy" className="text-zinc-400">
+                <label
+                    htmlFor="sortBy"
+                    className="text-zinc-400"
+                >
                     Sort by:
                 </label>
 
@@ -59,14 +84,25 @@ export default function CharactersPage() {
                 </select>
             </div>
 
-            {isLoading ? (
+            {isLoading && (
                 <p className="mt-6 text-zinc-400">
                     Loading characters...
                 </p>
-            ) : (
+            )}
+
+            {error && (
+                <p className="mt-6 text-red-400">
+                    {error}
+                </p>
+            )}
+
+            {!isLoading && !error && (
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {characters
-                        .filter((character) => !showMainsOnly || character.isMain)
+                        .filter(
+                            (character) =>
+                                !showMainsOnly || character.isMain
+                        )
                         .sort((a, b) => {
                             if (sortBy === "name") {
                                 return a.name.localeCompare(b.name);

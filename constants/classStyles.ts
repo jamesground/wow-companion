@@ -24,7 +24,7 @@ export const classStyles = {
     },
 
     Mage: {
-        color: "#69CCF0",
+        color: "#3FC7EB",
         icon: "/class-emblems/mage.png",
         iconBackground: "...",
         hoverBorder: "...",
@@ -40,7 +40,7 @@ export const classStyles = {
     },
 
     Monk: {
-        color: "#FF7C0A",
+        color: "#00FF98",
         icon: "/class-emblems/monk.png",
         iconBackground: "...",
         hoverBorder: "...",
@@ -48,7 +48,7 @@ export const classStyles = {
     },
 
     Shaman: {
-        color: "#228B22",
+        color: "#0070DE",
         icon: "/class-emblems/shaman.png",
         iconBackground: "...",
         hoverBorder: "...",
@@ -64,7 +64,7 @@ export const classStyles = {
     },
 
     Rogue: {
-        color: "#FFD100",
+        color: "#FFF468",
         icon: "/class-emblems/rogue.png",
         iconBackground: "...",
         hoverBorder: "...",
@@ -72,7 +72,7 @@ export const classStyles = {
     },
 
     Warlock: {
-        color: "#8787D1",
+        color: "#8788EE",
         icon: "/class-emblems/warlock.png",
         iconBackground: "...",
         hoverBorder: "...",
@@ -80,7 +80,7 @@ export const classStyles = {
     },
 
     "Demon Hunter": {
-        color: "#9F5485",
+        color: "#A330C9",
         icon: "/class-emblems/demon-hunter.png",
         iconBackground: "...",
         hoverBorder: "...",
