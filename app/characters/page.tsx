@@ -8,6 +8,7 @@ import type { Character } from "@/types/Character";
 export default function CharactersPage() {
     const [characters, setCharacters] = useState<Character[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isAuthenticating, setIsAuthenticating] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const [showMainsOnly, setShowMainsOnly] = useState(false);
@@ -17,6 +18,12 @@ export default function CharactersPage() {
         async function loadCharacters() {
             try {
                 const response = await fetch("/api/characters");
+
+                if (response.status === 401) {
+                    setIsAuthenticating(true);
+                    window.location.href = "/api/auth/blizzard";
+                    return;
+                }
 
                 if (!response.ok) {
                     throw new Error("Failed to load characters.");
@@ -86,7 +93,9 @@ export default function CharactersPage() {
 
             {isLoading && (
                 <p className="mt-6 text-zinc-400">
-                    Loading characters...
+                    {isAuthenticating
+                        ? "Reconnecting to Blizzard..."
+                        : "Loading characters..."}
                 </p>
             )}
 

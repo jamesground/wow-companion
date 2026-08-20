@@ -13,7 +13,7 @@ export async function getCharacters(): Promise<Character[]> {
     const accessToken = await getBlizzardAccessToken();
 
     if (!accessToken) {
-        throw new Error("No Blizzard access token found.");
+        throw new Error("BLIZZARD_AUTH_REQUIRED");
     }
 
     const response = await fetch(
@@ -26,6 +26,10 @@ export async function getCharacters(): Promise<Character[]> {
     );
 
     if (!response.ok) {
+        if (response.status === 401) {
+            throw new Error("BLIZZARD_AUTH_REQUIRED");
+        }
+
         throw new Error("Failed to fetch Blizzard character data.");
     }
 

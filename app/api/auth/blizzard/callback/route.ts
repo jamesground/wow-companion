@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 import { blizzardConfig } from "@/lib/blizzard/config";
 
 export async function GET(request: Request) {
@@ -69,10 +70,20 @@ export async function GET(request: Request) {
 
     cookieStore.delete("blizzard_oauth_state");
 
-    return Response.json({
-        message: "Blizzard authentication successful.",
-        tokenType: tokenData.token_type,
-        expiresIn: tokenData.expires_in,
-        scope: tokenData.scope,
-    });
+    const response = NextResponse.redirect(
+        new URL("/characters", request.url)
+    );
+    
+    response.cookies.set(
+        "blizzard_access_token",
+        tokenData.access_token,
+        {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            maxAge: tokenData.expires_in,
+            path: "/",
+        }
+    );
+    return response;
 }

@@ -8,7 +8,7 @@ MFJ is being built as a learning project while gradually becoming a practical to
 
 ### Characters
 
-- Character data model
+- Blizzard character data integration
 - Character list
 - Character cards
 - Class-specific colors and emblems
@@ -18,8 +18,10 @@ MFJ is being built as a learning project while gradually becoming a practical to
 - Sort characters by name, level, or item level
 - Profession icons displayed on character cards
 - Profession information tooltips
+- Current Midnight profession skill display
+- Support for characters level 10 and below that do not have full Blizzard profiles
 
-Character data is currently stored locally in `data/characters.ts`.
+Character data is retrieved from Blizzard's World of Warcraft API and normalized into MFJ's internal character model.
 
 ### Professions
 
@@ -28,15 +30,37 @@ Character data is currently stored locally in `data/characters.ts`.
 - Crafting and gathering profession classification
 - Character profession data
 - Profession validation
-- Profession skill and concentration display
+- Profession icons
+- Profession skill levels by expansion
+- Current Midnight profession skill display
+- Profession specialization display
+
+Profession tiers are preserved by expansion so that historical profession data can be used later on individual character and profession pages.
+
+Profession concentration is not currently provided by the Blizzard API and will eventually require manual tracking and/or addon data.
+
+## Authentication & Blizzard API
+
+MFJ uses Blizzard OAuth to authorize access to World of Warcraft account data.
+
+- Blizzard OAuth authorization flow
+- Authorization code exchange
+- Server-side access token handling
+- HTTP-only access token cookie
+- Automatic detection of missing or invalid authentication
+- Automatic re-authentication when Blizzard returns an unauthorized response
+- Automatic return to the application after successful authentication
+
+Blizzard API communication is handled server-side so that Blizzard client credentials and access tokens are not exposed to browser-side code.
 
 ## Planned Features
 
 ### Characters
 
-- Character creation/editing
-- Blizzard Armory integration
-- Replace locally maintained character data with Blizzard API data
+- Character creation/editing and settings
+- Persistent main character settings
+- Individual character detail pages
+- Validate remaining class emblems
 
 ### Midsummer
 
@@ -47,12 +71,13 @@ Character data is currently stored locally in `data/characters.ts`.
 
 ### Professions & Crafting
 
-- Profession tracking per character
-- Concentration tracking
+- Manual profession concentration tracking
+- Addon-based profession concentration import
 - Profession tool tracking
 - Recipe tracking
 - Crafting material tracking
 - Crafting recommendations
+- "Who can craft this?" search
 
 ## Getting Started
 
@@ -60,6 +85,7 @@ Character data is currently stored locally in `data/characters.ts`.
 
 - Node.js
 - npm
+- A Blizzard Developer account and OAuth client for Blizzard API integration
 
 ### Development Server
 
@@ -77,7 +103,7 @@ The development server automatically reloads as files are changed.
 
 ```text
 app/
-    Application pages and routes
+    Application pages and API routes
 
 components/
     Reusable UI components
@@ -86,7 +112,10 @@ constants/
     Application-wide constants and styling data
 
 data/
-    Local application data
+    Application data and service access
+
+lib/
+    Server-side services and Blizzard API integration
 
 types/
     TypeScript type definitions
@@ -117,11 +146,39 @@ npm run lint
 
 Run the project's linting checks.
 
+## Data Architecture
+
+MFJ combines data from multiple sources.
+
+### Blizzard API
+
+Blizzard provides authoritative account and character information including:
+
+- Character identity
+- Realm
+- Class and race
+- Level
+- Item level
+- Specialization
+- Professions
+- Profession skill levels by expansion
+- Known recipes
+
+### MFJ
+
+MFJ maintains application-specific information that Blizzard does not provide through the API, such as:
+
+- Main character designation
+- User preferences
+- Other application-specific settings
+
+### Future Addon Imports
+
+Some useful World of Warcraft information is not exposed through Blizzard's API. MFJ may eventually support addon imports for data such as profession concentration and other account information.
+
 ## Long-Term Vision
 
 MFJ is intended to grow beyond a simple character tracker into a personal World of Warcraft account management and planning tool.
-
-A major goal is integrating Blizzard's Armory/API data so that character and profession information can eventually be synchronized rather than maintained manually.
 
 The profession system is intended to go beyond simple tracking. Eventually, MFJ should be able to combine character professions, recipes, tools, concentration, materials, and crafting requirements to answer questions such as:
 
