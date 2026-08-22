@@ -95,6 +95,79 @@ export type BlizzardProfessionReference = {
     id: number;
 };
 
+export type BlizzardRecipeReference = {
+    href: string;
+    name: string;
+    id: number;
+};
+
+export type BlizzardRecipe = {
+    _links: {
+        self: {
+            href: string;
+        };
+    };
+
+    id: number;
+
+    name: {
+        en_US: string;
+    };
+
+    description?: {
+        en_US: string;
+    };
+
+    media: {
+        key: {
+            href: string;
+        };
+        id: number;
+    };
+
+    crafted_item?: {
+        key: {
+            href: string;
+        };
+        name: {
+            en_US: string;
+        };
+        id: number;
+    };
+
+    reagents?: {
+        reagent: {
+            key: {
+                href: string;
+            };
+            name: {
+                en_US: string;
+            };
+            id: number;
+        };
+        quantity: number;
+    }[];
+
+    rank?: number;
+
+    crafted_quantity?: {
+        value: number;
+    };
+
+    modified_crafting_slots?: {
+        slot_type: {
+            key: {
+                href: string;
+            };
+            name: {
+                en_US: string;
+            };
+            id: number;
+        };
+        display_order: number;
+    }[];
+};
+
 export type BlizzardProfessionTier = {
     skill_points: number;
     max_skill_points: number;
@@ -102,7 +175,7 @@ export type BlizzardProfessionTier = {
         name: string;
         id: number;
     };
-    known_recipes?: unknown[];
+    known_recipes?: BlizzardRecipeReference[];
 };
 
 export type BlizzardCharacterProfession = {

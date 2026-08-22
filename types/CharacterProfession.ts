@@ -1,18 +1,16 @@
-import type { ProfessionCategory, ProfessionName } from "./Profession";
-
-export type ProfessionExpansion = {
-    name: string;
-    id: number;
-    skill: number;
-    maxSkill: number;
-};
+import type { ProfessionName } from "./Profession";
+import type { Recipe } from "./Recipe";
 
 export type CharacterProfession = {
     profession: ProfessionName;
-    category: ProfessionCategory;
-    expansions: ProfessionExpansion[];
-    skill?: number;
-    maxSkill?: number;
+    category: "Primary" | "Secondary";
+    skill: number;
+    expansion: {
+        name: string;
+        id: number;
+        skill: number;
+        maxSkill: number;
+    }[];
     specialization?: string;
-    concentration?: number;
+    recipes: Recipe[];
 };

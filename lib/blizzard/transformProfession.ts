@@ -1,47 +1,57 @@
-import { normalizeProfessionName } from "./normalize";
-import type { CharacterProfession } from "../../types/CharacterProfession";
-import type { ProfessionCategory } from "../../types/Profession";
 import type {
     BlizzardCharacterProfession,
     BlizzardProfessionProfile,
 } from "./types";
+import type { CharacterProfession } from "@/types/CharacterProfession";
+import type { ProfessionName } from "@/types/Profession";
 
-function transformCharacterProfession(
+function transformProfession(
     profession: BlizzardCharacterProfession,
-    category: ProfessionCategory
+    category: "Primary" | "Secondary"
 ): CharacterProfession {
+    const professionName = profession.profession.name as ProfessionName;
+
+    const tiers = profession.tiers ?? [];
+
+    const expansions = tiers.map((tier) => ({
+        name: tier.tier.name,
+        id: tier.tier.id,
+        skill: tier.skill_points,
+        maxSkill: tier.max_skill_points,
+    }));
+
+    const currentExpansion = expansions[expansions.length - 1];
+    const currentTier = tiers[tiers.length - 1];
+
+    const recipes = (currentTier?.known_recipes ?? []).map((recipe) => ({
+        id: recipe.id,
+        name: recipe.name,
+        profession: professionName,
+        expansion: currentExpansion?.name ?? "",
+        reagents: [],
+        modifiedCraftingSlots: [],
+    }));
+
     return {
-        profession: normalizeProfessionName(
-            profession.profession.name
-        ),
+        profession: professionName,
         category,
-        expansions: (profession.tiers ?? []).map((tier) => ({
-            name: tier.tier.name,
-            id: tier.tier.id,
-            skill: tier.skill_points,
-            maxSkill: tier.max_skill_points,
-        })),
-        skill: profession.skill_points,
-        maxSkill: profession.max_skill_points,
+        expansion: expansions,
+        skill: currentExpansion?.skill ?? 0,
         specialization: profession.specialization?.name.en_US,
+        recipes,
     };
 }
 
 export function transformProfessions(
-    profile: BlizzardProfessionProfile
+    data: BlizzardProfessionProfile
 ): CharacterProfession[] {
-    const primaryProfessions = (profile.primaries ?? []).map(
-        (profession) =>
-            transformCharacterProfession(profession, "Primary")
+    const primaryProfessions = (data.primaries ?? []).map((profession) =>
+        transformProfession(profession, "Primary")
     );
 
-    const secondaryProfessions = (profile.secondaries ?? []).map(
-        (profession) =>
-            transformCharacterProfession(profession, "Secondary")
+    const secondaryProfessions = (data.secondaries ?? []).map((profession) =>
+        transformProfession(profession, "Secondary")
     );
 
-    return [
-        ...primaryProfessions,
-        ...secondaryProfessions,
-    ];
+    return [...primaryProfessions, ...secondaryProfessions];
 }

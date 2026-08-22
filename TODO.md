@@ -75,3 +75,14 @@
 - [ ] Track profession tools
 - [ ] Account-wide crafting overview
 - [ ] Character/profession comparison
+
+## AWS / Cloud Architecture
+
+- [ ] Keep application data models independent of storage implementation
+- [ ] Separate Blizzard-sourced data from MFJ-owned data
+- [ ] Separate external/addon data from Blizzard API data
+- [ ] Design services around replaceable data sources
+- [ ] Evaluate AWS hosting strategy
+- [ ] Evaluate persistent cloud data storage
+- [ ] Evaluate secure production secret management
+- [ ] Deploy MFJ to AWS
